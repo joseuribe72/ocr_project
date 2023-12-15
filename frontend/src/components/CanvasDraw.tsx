@@ -9,11 +9,13 @@ const CanvasDraw: React.FC = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.width = window.innerWidth * 2;
-      canvas.height = window.innerHeight * 2;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
+    const parentDiv = canvas?.parentElement;
+
+    if (canvas && parentDiv) {
+      canvas.width = parentDiv.clientWidth * 2;
+      canvas.height = parentDiv.clientHeight * 2;
+      canvas.style.width = `${parentDiv.clientWidth}px`;
+      canvas.style.height = `${parentDiv.clientHeight}px`;
 
       const context = canvas.getContext("2d");
       if (context) {
